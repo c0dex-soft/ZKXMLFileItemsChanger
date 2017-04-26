@@ -1,0 +1,14 @@
+<window border="normal">
+		<button id="dugmeZaPopup" label="Popup XML" href="popupXML.zul"/>
+	<hbox hflex="true" pack="end">
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+		<button label="Nefunkcionalno dugme" disabled="true"/>
+	</hbox>
+</window>
+
+

@@ -1,0 +1,60 @@
+<zk>
+<window  style="background: #581189" position="center, center" title="purple:magic - Program za izmenu XML fajla" border="normal" height="90%" width="90%" apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('com.purplemagic.service.UcitavanjeXMLFajla')" popup="true" mode="overlapped" closable="true">
+    <caption style="font-weight:bold; color:#dcd1e3; font-size:13px" />
+    <hbox align="center" >
+        Fajl:
+        <textbox width="333px" value="@bind(vm.nazivFajla)" placeholder="Naziv učitanog fajla..." />
+        <button label="Učitaj fajl" onClick="@command('ucitajXML')" />
+    </hbox>
+     <listbox height="400px" width="100%" selectedItem="@bind(vm.selektovanaStavka)" model="@bind(vm.spisakStavki)" emptyMessage="Fajl nije učitan..." style="margin-top:10px">
+		 <listhead>
+            <listheader>
+            	<hbox hflex="true">
+            		<label style="font-weight:bold; font-size:10pt">Naziv stavke</label>
+            		<hbox hflex="true" pack="end">
+	            		<button id="dugmeDodajStavku" width="158px" label="Dodaj stavku" onClick="@command('dodajStavku')" />
+		            	<button  id="dugmeIzmeni" width="77px" label="Izmeni" disabled="@load(empty vm.selektovanaStavka)" onClick="@command('izmeniStavku')" />
+				        <button  id="dugmeIzbrisi" width="77px" label="IzbriÅ¡i" disabled="@load(empty vm.selektovanaStavka)" onClick="@command('popupIzbrisi')" />
+            		</hbox>
+	            	
+            	</hbox> 
+            </listheader>
+        </listhead>
+        <template name="Spisak stavki">
+            <listitem>
+                <listcell id="stavka" label="@bind(each)"></listcell>
+            </listitem>
+        </template>
+    </listbox>
+    <hbox align="end" height="77px" pack="end">
+		<button  id="dugmeSacuvaj" width="100px" height="35px" label="Sačuvaj" image="img/SaveButton.png" disabled="@load(empty vm.spisakStavki)" onClick="@command('upisiXML')"/>
+	</hbox>
+    <window width="433px" position="center, center" style="background: #581189" id="popupDodaj" title="Dodajte novu stavku" border="normal" popup="true" mode="overlapped" visible="@bind(vm.prozorDodaj)">
+	 <caption style="font-weight:bold; color:#dcd1e3; font-size:13px" />
+	 <vbox align="center">
+	    <hbox>
+	     Stavka:
+	     <textbox width="333px" value="@bind(vm.nazivStavkeZaDodavanje)" placeholder="Unesite naziv stavke koju želite dodati..." onOK="@command('dodaj')" onCancel="@command('odustani')"/>
+	    </hbox>
+	    <hbox width="100%" pack="right">
+	     <button label="Dodaj" onClick="@command('dodaj')" />
+	     <button label="Odustani" onClick="@command('odustani')" />
+	    </hbox>
+	 </vbox>
+	</window>
+	<window width="433px" position="center,center" style="background: #581189" id="popupIzmena" title="Izmenite selektovanu stavku" border="normal" popup="true" mode="overlapped" visible="@bind(vm.prozorIzmeni)">
+	<caption style="font-weight:bold; color:#dcd1e3; font-size:13px" /> 
+	 <vbox align="center">
+	    <hbox>
+	     Stavka:
+	     <textbox width="333px" value="@bind(vm.nazivStavkeZaIzmenu)" placeholder="Unesite novi naziv selektovane stavke..." onOK="@command('izmeni')" onCancel="@command('odustani')"/>
+	    </hbox>
+	    <hbox width="100%" pack="right">
+	     <button label="Izmeni" onClick="@command('izmeni')"/>
+	     <button label="Odustani" onClick="@command('odustani')" />
+	    </hbox>
+	 </vbox>
+	</window>	
+</window>
+</zk>
